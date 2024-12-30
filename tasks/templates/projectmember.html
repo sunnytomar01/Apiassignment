@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Project Members </h1>
+
+<ul>
+  {% for projectmember in projectmembers %}
+  <li>
+    <a href="{% url 'projectmember_detail' projectmember.id %}">
+      {% if projectmember.important %}
+      <strong>{{projectmember.task}}</strong>
+      {% else %} {{projectmember.content}} {{projectmember.user}} {% endif %}
+      <p>{{projectmember.content}}</p>
+
+      {{projectmember.datecompleted|date:'M j Y:i'}}
+    </a>
+  </li>
+  
+<form action="{% url 'delete_projectmember' projectmember.id %}" method="POST">
+  {% csrf_token %}
+  <button>
+    DELETE
+  </button>
+</form>
+  {% endfor %}
+</ul>
+
+</form>
+
+{% endblock %}
+

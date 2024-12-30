@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{{projectmember.user}}
+
+{{error}}
+
+<form  action= "/create_projectmember/"  method="POST">
+  {% csrf_token %}
+  {{form.as_p}}
+
+  <button>
+    Update
+  </button>
+</form>
+
+<form action="{% url 'complete_projectmember' projectmember.id %}" method="POST">
+  {% csrf_token %}
+ 
+</form>
+
+<form action="{% url 'delete_projectmember' projectmember.id %}" method="POST">
+  {% csrf_token %}
+  <button>
+    delete
+  </button>
+</form>
+
+{% endblock %}

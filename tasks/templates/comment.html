@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Comments </h1>
+
+<ul>
+  {% for comment in comments %}
+  <li>
+    <a href="{% url 'comment_detail' comment.id %}">
+      {% if comment.important %}
+      <strong>{{comment.task}}</strong>
+      {% else %} {{comment.content}} {{comment.user}} {% endif %}
+      <p>{{comment.content}}</p>
+
+      {{comment.datecompleted|date:'M j Y:i'}}
+    </a>
+  </li>
+  
+<form action="{% url 'delete_comment' comment.id %}" method="POST">
+  {% csrf_token %}
+  <button>
+    DELETE
+  </button>
+</form>
+  {% endfor %}
+</ul>
+
+</form>
+
+{% endblock %}
+

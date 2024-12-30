@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Products</h1>
+
+<ul>
+  {% for project in projects %}
+  <li>
+    <a href="{% url 'project_detail' project.id %}">
+      {% if project.important %}
+      <strong>{{project.title}}</strong>
+      {% else %} {{project.id}} {{project.title}} {% endif %}
+      <p>{{project.description}}</p>
+
+      {{project.datecompleted|date:'M j Y:i'}}
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="link-info" href="{% url 'create_projectmember' %}" class="nav-link">
+      Create Project Member
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
