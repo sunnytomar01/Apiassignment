@@ -70,7 +70,7 @@ class Comment(models.Model):
   datecompleted = models.DateTimeField(null=True, blank=True)
 
   def __str__(self):
-    return self.title + ' - ' + self.user.username 
+    return self.user + ' - ' + self.user.username 
   
     
     
